@@ -1,10 +1,15 @@
 from fastapi import FastAPI
 from routes import client_routes
 from fastapi.middleware.cors import CORSMiddleware
+from routes import service_routes
 
 app = FastAPI(debug=True)
 
 #creo las rutas
+# Creo acceso a la ruta service
+app.include_router(service_routes.router,
+                   prefix="/service",
+                   tags=['Service'])
 
 # Creo acceso a la ruta client
 app.include_router(client_routes.router,
